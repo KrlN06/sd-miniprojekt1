@@ -14,38 +14,47 @@ DynamicArray::~DynamicArray() {
     delete [] data;
 }
 
-void insert(int index, int value) {
+void DynamicArray::resize() {
+    std::cout<<"DynamicArray::resize()"<<std::endl;
+}
+
+void DynamicArray::insert(int index, int value) {
     std::cout<<"DynamicArray::insert()"<<std::endl;
 }
 
-void push_front(int value) {
+void DynamicArray::push_front(int value) {
     std::cout<<"DynamicArray::push_front()"<<std::endl;
 }
-void push_back(int value) {
+void DynamicArray::push_back(int value) {
     std::cout<<"DynamicArray::push_back()"<<std::endl;
 }
-void remove(int index) {
+void DynamicArray::remove(int index) {
     std::cout<<"DynamicArray::remove()"<<std::endl;
 }
-void remove_front() {
+void DynamicArray::remove_front() {
     std::cout<<"DynamicArray::remove_front()"<<std::endl;
 }
-void remove_back() {
+void DynamicArray::remove_back() {
     std::cout<<"DynamicArray::remove_back()"<<std::endl;
 }
 
-int find(int value) {
+int DynamicArray::find(int value) {
     std::cout<<"DynamicArray::find()"<<std::endl;
     return 1;
 }
 
-int getSize() {
+int DynamicArray::getSize() {
     std::cout<<"DynamicArray::getSize()"<<std::endl;
     return size;
 }
-bool isEmpty() {
+bool DynamicArray::isEmpty() {
     std::cout<<"DynamicArray::isEmpty()"<<std::endl;
     return size == 0;
+}
+
+
+void DynamicArray::clear() {
+    std::cout<<"DynamicArray::clear()"<<std::endl;
 }
 
 void DynamicArray::print() {
