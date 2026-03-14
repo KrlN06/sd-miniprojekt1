@@ -1,0 +1,11 @@
+# CLion / IntelliJ
+.idea/
+
+# build directory
+cmake-build-*/
+
+# compiled files
+*.exe
+*.out
+*.o
+*.obj
