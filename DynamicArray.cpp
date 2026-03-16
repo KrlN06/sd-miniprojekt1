@@ -21,7 +21,7 @@ void DynamicArray::resize() {
     std::cout<<"DynamicArray::resize()"<<std::endl;
     int newCapacity = 2 * capacity;
     int *newData = new int[newCapacity];
-    for (int i = 0; i < capacity; i++) {
+    for (int i = 0; i < size; i++) {
         newData[i] = data[i];
     }
     delete[] data;
@@ -31,25 +31,35 @@ void DynamicArray::resize() {
 
 void DynamicArray::insert(int index, int value) {
     // Inserts an element with the given value at the specified index.
-    std::cout<<"DynamicArray::insert()"<<std::endl;
+    std::cout << "DynamicArray::insert()" << std::endl;
+
+    if (index >= 0 && index <= size) {
+
+        if (size == capacity) {
+            resize();
+        }
+
+        for (int i = size; i > index; i--) {
+            data[i] = data[i - 1];
+        }
+
+        data[index] = value;
+        size++;
+    }
 }
 
 void DynamicArray::push_front(int value) {
     // Adds an element to the beginning of the array.
     std::cout<<"DynamicArray::push_front()"<<std::endl;
+    insert(0, value);
 }
 
 void DynamicArray::push_back(int value) {
     // Adds an element to the end of the array.
     std::cout<<"DynamicArray::push_back()"<<std::endl;
+    insert(size, value);
 
-    if(size == capacity) {resize();
-    }
-
-    data[size] = value;
-    size++;
-
-    }
+}
 
 void DynamicArray::remove(int index) {
     // Removes the element at the specified index.
@@ -69,8 +79,6 @@ void DynamicArray::remove_back() {
         size --;
     }
 }
-
-
 
 int DynamicArray::find(int value) {
     // Searches for the given value and returns the index of its occurrence.
