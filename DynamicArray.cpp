@@ -33,7 +33,10 @@ void DynamicArray::insert(int index, int value) {
     // Inserts an element with the given value at the specified index.
     std::cout << "DynamicArray::insert()" << std::endl;
 
-    if (index >= 0 && index <= size) {
+    if (index < 0 || index > size) {
+        std::cout << "Index out of range!" << std::endl;
+        return;
+    }
 
         if (size == capacity) {
             resize();
