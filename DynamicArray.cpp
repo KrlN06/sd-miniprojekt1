@@ -4,10 +4,12 @@
 #include "DynamicArray.h"
 #include <iostream>
 
-DynamicArray::DynamicArray() {
-    // Initializes an empty dynamic array with an initial capacity of 1.
-    capacity = 1;
-    size = 0;
+
+
+DynamicArray::DynamicArray()
+// Initializes an empty dynamic array with an initial capacity of 1.
+    : capacity(1), size(0)
+{
     data = new int[capacity];
 }
 
@@ -34,22 +36,22 @@ void DynamicArray::insert(int index, int value) {
     std::cout << "DynamicArray::insert()" << std::endl;
 
     if (index < 0 || index > size) {
-        std::cout << "Index out of range!" << std::endl;
+        std::cout << "Insert error: index " << index << " out of range" << std::endl;
         return;
     }
 
-        if (size == capacity) {
-            resize();
-        }
-
-        for (int i = size; i > index; i--) {
-            data[i] = data[i - 1];
-        }
-
-        data[index] = value;
-        size++;
+    if (size == capacity) {
+        resize();
     }
+
+    for (int i = size; i > index; i--) {
+        data[i] = data[i - 1];
+    }
+
+    data[index] = value;
+    size++;
 }
+
 
 void DynamicArray::push_front(int value) {
     // Adds an element to the beginning of the array.
@@ -67,26 +69,40 @@ void DynamicArray::push_back(int value) {
 void DynamicArray::remove(int index) {
     // Removes the element at the specified index.
     std::cout<<"DynamicArray::remove()"<<std::endl;
+
+    if (index < 0 || index >= size) {
+        std::cout << "Remove error: index " << index << " out of range" << std::endl;
+        return;
+    }
+
+    for (int i = index; i < size - 1; i++) {
+        data[i] = data[i + 1];
+    }
+    size--;
 }
+
+
 
 void DynamicArray::remove_front() {
     // Removes the first element from the array.
-    std::cout<<"DynamicArray::remove_front()"<<std::endl;
+    remove(0);
 }
 
 void DynamicArray::remove_back() {
     // Removes the last element from the array.
-    std::cout<<"DynamicArray::remove_back()"<<std::endl;
-
-    if(size > 0) {
-        size --;
-    }
+    remove(size - 1);
 }
 
 int DynamicArray::find(int value) {
     // Searches for the given value and returns the index of its occurrence.
     std::cout<<"DynamicArray::find()"<<std::endl;
-    return 1;
+    for (int i = 0; i < size; i++) {
+        if (data[i] == value) {
+            return i;
+        }
+    }
+    return -1;
+
 }
 
 int DynamicArray::getSize() {
@@ -104,6 +120,7 @@ bool DynamicArray::isEmpty() {
 void DynamicArray::clear() {
     // Removes all elements from the array.
     std::cout<<"DynamicArray::clear()"<<std::endl;
+    size = 0;
 }
 
 void DynamicArray::print() {
