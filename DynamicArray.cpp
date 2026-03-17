@@ -76,12 +76,12 @@ void DynamicArray::remove(int index) {
 
 
 
-void DynamicArray::remove_front() {
+void DynamicArray::pop_front() {
     // Removes the first element from the array.
     remove(0);
 }
 
-void DynamicArray::remove_back() {
+void DynamicArray::pop_back() {
     // Removes the last element from the array.
     remove(size - 1);
 }

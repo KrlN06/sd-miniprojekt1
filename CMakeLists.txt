@@ -5,4 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(Projekt_1 main.cpp
         DynamicArray.h
-        DynamicArray.cpp)
+        DynamicArray.cpp
+        SinglyLinkedList.cpp
+        SinglyLinkedList.h
+)

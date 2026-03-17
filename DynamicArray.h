@@ -19,8 +19,8 @@ public:
     void push_back(int value);
 
     void remove(int index);
-    void remove_front();
-    void remove_back();
+    void pop_front();
+    void pop_back();
 
     int find(int value);
 
