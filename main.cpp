@@ -1,21 +1,22 @@
 #include "DynamicArray.h"
 #include <iostream>
 
-int main()
-{
-    DynamicArray array;
-    array.push_back(11);
-    array.push_back(12);
-    array.push_back(13);
-    array.insert(1,0);
-    array.insert(12,1);
+int main() {
+    DynamicArray arr;
 
+    arr.print();
+    arr.push_back(1);
+    arr.push_back(2);
+    arr.push_back(3);
 
-    array.print();
-    array.remove(1);
-    array.print();
+    arr.print();
+
+    arr.insert(1, 99);
+    arr.print();
+
+    arr.remove(2);
+    arr.print();
 
     return 0;
 }
-
 

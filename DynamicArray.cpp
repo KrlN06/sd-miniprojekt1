@@ -20,7 +20,6 @@ DynamicArray::~DynamicArray() {
 
 void DynamicArray::resize() {
     // Increases the array capacity when there is no space for new elements.
-    std::cout<<"DynamicArray::resize()"<<std::endl;
     int newCapacity = 2 * capacity;
     int *newData = new int[newCapacity];
     for (int i = 0; i < size; i++) {
@@ -33,8 +32,6 @@ void DynamicArray::resize() {
 
 void DynamicArray::insert(int index, int value) {
     // Inserts an element with the given value at the specified index.
-    std::cout << "DynamicArray::insert()" << std::endl;
-
     if (index < 0 || index > size) {
         std::cout << "Insert error: index " << index << " out of range" << std::endl;
         return;
@@ -55,21 +52,17 @@ void DynamicArray::insert(int index, int value) {
 
 void DynamicArray::push_front(int value) {
     // Adds an element to the beginning of the array.
-    std::cout<<"DynamicArray::push_front()"<<std::endl;
     insert(0, value);
 }
 
 void DynamicArray::push_back(int value) {
     // Adds an element to the end of the array.
-    std::cout<<"DynamicArray::push_back()"<<std::endl;
     insert(size, value);
 
 }
 
 void DynamicArray::remove(int index) {
     // Removes the element at the specified index.
-    std::cout<<"DynamicArray::remove()"<<std::endl;
-
     if (index < 0 || index >= size) {
         std::cout << "Remove error: index " << index << " out of range" << std::endl;
         return;
@@ -95,7 +88,6 @@ void DynamicArray::remove_back() {
 
 int DynamicArray::find(int value) {
     // Searches for the given value and returns the index of its occurrence.
-    std::cout<<"DynamicArray::find()"<<std::endl;
     for (int i = 0; i < size; i++) {
         if (data[i] == value) {
             return i;
@@ -107,19 +99,16 @@ int DynamicArray::find(int value) {
 
 int DynamicArray::getSize() {
     // Returns the current number of elements in the array.
-    std::cout<<"DynamicArray::getSize()"<<std::endl;
     return size;
 }
 
 bool DynamicArray::isEmpty() {
     // Checks whether the array contains any elements.
-    std::cout<<"DynamicArray::isEmpty()"<<std::endl;
     return size == 0;
 }
 
 void DynamicArray::clear() {
     // Removes all elements from the array.
-    std::cout<<"DynamicArray::clear()"<<std::endl;
     size = 0;
 }
 
