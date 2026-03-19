@@ -1,22 +1,19 @@
 #include "DynamicArray.h"
+#include "SinglyLinkedList.h"
 #include <iostream>
 
+
+
 int main() {
-    DynamicArray arr;
+    SinglyLinkedList list;
 
-    arr.print();
-    arr.push_back(1);
-    arr.push_back(2);
-    arr.push_back(3);
+    list.push_front(5);
+    list.push_front(10);
+    list.push_front(15);
 
-    arr.print();
+    list.print();
 
-    arr.insert(1, 99);
-    arr.print();
-
-    arr.remove(2);
-    arr.print();
+    //std::cout << "Size: " << list.getSize() << std::endl;
 
     return 0;
 }
-
