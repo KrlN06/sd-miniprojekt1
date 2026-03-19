@@ -23,7 +23,6 @@ public:
     void pop_back();
 
     int find(int value);
-
     int getSize();
     bool isEmpty();
 
