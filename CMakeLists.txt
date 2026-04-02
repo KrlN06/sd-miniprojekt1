@@ -8,4 +8,6 @@ add_executable(Projekt_1 main.cpp
         DynamicArray.cpp
         SinglyLinkedList.cpp
         SinglyLinkedList.h
+        DoublyLinkedList.cpp
+        DoublyLinkedList.h
 )

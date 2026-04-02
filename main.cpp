@@ -1,7 +1,7 @@
 #include "DynamicArray.h"
 #include "SinglyLinkedList.h"
 #include <iostream>
-Ż
+
 
 
 int main() {
