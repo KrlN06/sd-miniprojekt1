@@ -29,10 +29,10 @@ public:
     void pop_front();
     void pop_back();
 
-    void print();
+    void print() const;
     void clear();
-    int getSize();
-    int find(int data);
+    int getSize() const;
+    [[nodiscard]] int find(int data) const;
 
 };
 
