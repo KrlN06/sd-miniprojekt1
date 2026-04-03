@@ -77,21 +77,17 @@ void SinglyLinkedList::remove(int index) {
     if (index < 0 || index >= size || head == nullptr) {
         return;
     }
+    Node* temp = head;
 
     if (index == 0) {
-        Node* temp = head;
         head = head->next;
         delete temp;
-
         if (head == nullptr) {
             tail = nullptr;
         }
-
         size--;
         return;
     }
-
-    Node* temp = head;
 
     for (int i = 0; i < index - 1; i++) {
         temp = temp->next;

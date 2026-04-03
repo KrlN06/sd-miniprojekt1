@@ -30,13 +30,13 @@ public:
     void push_front (int data);
     void push_back (int data);
 
-    void remove (int data);
+    void remove (int index);
     void pop_front();
     void pop_back();
 
     void print();
     void clear();
-    int getSize();
+    int getSize () const;
     [[nodiscard]] int find(int data) const;
 
 };
