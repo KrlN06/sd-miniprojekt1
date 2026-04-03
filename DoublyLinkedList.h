@@ -6,17 +6,16 @@
 #ifndef PROJEKT_1_DOUBLYLINKEDLIST_H
 #define PROJEKT_1_DOUBLYLINKEDLIST_H
 
-struct Node {
-    int data;
-    Node* next;
-    Node* prev;
-};
 
 
 class DoublyLinkedList {
 
 private:
-
+    struct Node {
+        int data;
+        Node* next;
+        Node* prev;
+    };
     int size;
     Node* head;
     Node* tail;

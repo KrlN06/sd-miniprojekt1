@@ -1,54 +1,91 @@
 #include "DynamicArray.h"
 #include "SinglyLinkedList.h"
+#include  "DoublyLinkedList.h"
+#include "Timer.h"
 #include <iostream>
 
 
 
 int main() {
-    SinglyLinkedList list;
+    const int sizes[8] = {5000, 8000, 10000, 16000, 20000, 40000, 60000, 100000};
+    const int repetitions = 10;
 
-    std::cout << "Push back:" << std::endl;
-    list.push_back(10);
-    list.push_back(20);
-    list.push_back(30);
-    list.print();
+    Timer timer;
 
-    std::cout << "Push front:" << std::endl;
-    list.push_front(5);
-    list.push_front(1);
-    list.print();
+    for (int s = 0; s < 8; s++) {
+        int n = sizes[s];
 
-    std::cout << "Insert at index 2:" << std::endl;
-    list.insert(2, 99);
-    list.print();
+        long long totalPushBack = 0;
+        long long totalInsertMiddle = 0;
+        long long totalRemoveMiddle = 0;
+        long long totalFind = 0;
 
-    std::cout << "Remove index 3:" << std::endl;
-    list.remove(3);
-    list.print();
+        for (int r = 0; r < repetitions; r++) {
+            DoublyLinkedList list;
 
-    std::cout << "Pop front:" << std::endl;
-    list.pop_front();
-    list.print();
+            for (int i = 0; i < n; i++) {
+                list.push_back(rand());
+            }
 
-    std::cout << "Pop back:" << std::endl;
-    list.pop_back();
-    list.print();
+            timer.start();
 
-    std::cout << "Find 99:" << std::endl;
-    std::cout << list.find(99) << std::endl;
+            for (int i = 0; i < 1000; i++) {
+                list.push_back(rand());
+            }
 
-    std::cout << "Find 123:" << std::endl;
-    std::cout << list.find(123) << std::endl;
+            timer.stop();
+            totalPushBack += timer.getElapsedTime();
 
-    std::cout << "Size:" << std::endl;
-    std::cout << list.getSize() << std::endl;
+            timer.start();
 
-    std::cout << "Clear:" << std::endl;
-    list.clear();
-    list.print();
+            for (int i = 0; i < 1000; i++) {
+                list.insert(list.getSize() / 2, rand());
+            }
 
-    std::cout << "Size after clear:" << std::endl;
-    std::cout << list.getSize() << std::endl;
+            timer.stop();
+            totalInsertMiddle += timer.getElapsedTime();
+
+            timer.start();
+
+            for (int i = 0; i < 1000; i++) {
+                list.remove(list.getSize() / 2);
+            }
+
+            timer.stop();
+            totalRemoveMiddle += timer.getElapsedTime();
+
+            int valueToFind = rand();
+
+            timer.start();
+
+            for (int i = 0; i < 1000; i++) {
+                list.find(valueToFind);
+            }
+
+            timer.stop();
+            totalFind += timer.getElapsedTime();
+        }
+
+        std::cout << "Rozmiar: " << n << std::endl;
+
+        std::cout << "push_back avg: "
+                  << totalPushBack / repetitions
+                  << " ns" << std::endl;
+
+        std::cout << "insert middle avg: "
+                  << totalInsertMiddle / repetitions
+                  << " ns" << std::endl;
+
+        std::cout << "remove middle avg: "
+                  << totalRemoveMiddle / repetitions
+                  << " ns" << std::endl;
+
+        std::cout << "find avg: "
+                  << totalFind / repetitions
+                  << " ns" << std::endl;
+
+        std::cout << "------------------------" << std::endl;
+    }
 
     return 0;
 }

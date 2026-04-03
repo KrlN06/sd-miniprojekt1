@@ -10,4 +10,6 @@ add_executable(Projekt_1 main.cpp
         SinglyLinkedList.h
         DoublyLinkedList.cpp
         DoublyLinkedList.h
+        Timer.cpp
+        Timer.h
 )

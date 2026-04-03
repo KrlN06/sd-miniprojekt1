@@ -5,14 +5,15 @@
 #ifndef PROJEKT_1_SINGLYLINKEDLIST_H
 #define PROJEKT_1_SINGLYLINKEDLIST_H
 
-struct Node {
-    int data;
-    Node* next;
-};
 
 
 class SinglyLinkedList {
 private:
+    struct Node {
+        int data;
+        Node* next;
+    };
+
     Node* head;
     Node* tail;
     int size;
