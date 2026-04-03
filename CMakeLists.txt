@@ -12,4 +12,6 @@ add_executable(Projekt_1 main.cpp
         DoublyLinkedList.h
         Timer.cpp
         Timer.h
+        Benchmark.cpp
+        Benchmark.h
 )
