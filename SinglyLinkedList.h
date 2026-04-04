@@ -21,6 +21,8 @@ private:
 public:
     SinglyLinkedList();
     ~SinglyLinkedList();
+    SinglyLinkedList(const SinglyLinkedList& other);
+    SinglyLinkedList& operator=(const SinglyLinkedList& other);
 
     void insert(int index, int data);
     void push_front(int data);

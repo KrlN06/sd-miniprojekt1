@@ -15,6 +15,35 @@ SinglyLinkedList::~SinglyLinkedList() {
     clear();
 }
 
+SinglyLinkedList::SinglyLinkedList(const SinglyLinkedList& other) {
+    head = nullptr;
+    tail = nullptr;
+    size = 0;
+
+    Node* temp = other.head;
+
+    while (temp != nullptr) {
+        push_back(temp->data);
+        temp = temp->next;
+    }
+}
+
+SinglyLinkedList& SinglyLinkedList::operator=(const SinglyLinkedList& other) {
+    if (this == &other) {
+        return *this;
+    }
+
+    clear();
+
+    Node* temp = other.head;
+
+    while (temp != nullptr) {
+        push_back(temp->data);
+        temp = temp->next;
+    }
+
+    return *this;
+}
 
 
 void SinglyLinkedList::insert(int index, int data) {
