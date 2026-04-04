@@ -22,19 +22,19 @@ void Benchmark::run() {
         for (int i = 0; i < 10; i++) {
 
             // Generate common random dataset
-            std::vector<int> data = generateRandomData(size);
+            DynamicArray<int> data = generateRandomData(size);
 
             // Create fresh empty structures---------------------------------------------
-            DynamicArray dynamicArray;
+            DynamicArray<int> dynamicArray;
             SinglyLinkedList singlyLinkedList;
             DoublyLinkedList doublyLinkedList;
             //---------------------------------------------------------------------------
 
             // Fill all structures with identical data-----------------------------------
-            for (int value : data) {
-                dynamicArray.push_back(value);
-                singlyLinkedList.push_back(value);
-                doublyLinkedList.push_back(value);
+            for (int i = 0; i < data.getSize(); i++) {
+                dynamicArray.push_back(data[i]);
+                singlyLinkedList.push_back(data[i]);
+                doublyLinkedList.push_back(data[i]);
             }
             //---------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ void Benchmark::run() {
     }
 }
 
-void Benchmark::benchmarkDynamicArray(const DynamicArray& originalArray, const std::vector<int>& data) {
+void Benchmark::benchmarkDynamicArray(const DynamicArray<int>& originalArray, const DynamicArray<int>& data) {
 
     Timer timer;
 

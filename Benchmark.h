@@ -7,7 +7,6 @@
 #include "DynamicArray.h"
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
-#include <vector>
 
 class Benchmark {
 public:
