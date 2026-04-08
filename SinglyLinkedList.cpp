@@ -85,7 +85,7 @@ void SinglyLinkedList::push_front(int data) {
 
     size++;
 }
-
+    
 void SinglyLinkedList::push_back(int data) {
     Node* newNode = new Node;
     newNode->data = data;

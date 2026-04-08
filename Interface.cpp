@@ -6,17 +6,16 @@
 #include <ctime>
 
 Interface::Interface() : firstRun(true) {
-    srand(time(NULL)); 
+    srand(static_cast<unsigned int>(time(nullptr)));
 }
 
 void Interface::clearScreen() {
 #ifdef _WIN32
     system("cls");
-#else
+#elif __APPLE__ || __linux__
     system("clear");
 #endif
 }
-
 void Interface::waitForUser() {
     std::cout << "\nPress ENTER to continue...";
     std::cin.ignore(10000, '\n');
