@@ -1,3 +1,7 @@
+//
+// Created by Michał Marszałek on 06/04/2026.
+//
+
 #include "Interface.h"
 #include <iostream>
 #include <string>
@@ -42,11 +46,11 @@ void Interface::displayMainMenu() {
         firstRun = false;
     }
     std::cout << "Select mode:\n"
-              << "Dynamic array [1]\n"
+              << "Dynamic array      [1]\n"
               << "Singly linked list [2]\n"
               << "Doubly linked list [3]\n"
-              << "Benchmark [4]\n"
-              << "Quit [5]\n"
+              << "Benchmark          [4]\n"
+              << "Quit               [5]\n"
               << "Your choice: ";
 }
 

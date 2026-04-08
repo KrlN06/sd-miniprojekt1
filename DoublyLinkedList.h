@@ -24,6 +24,9 @@ public:
 
     DoublyLinkedList();
     ~ DoublyLinkedList();
+    DoublyLinkedList(const DoublyLinkedList& other);
+    DoublyLinkedList& operator=(const DoublyLinkedList& other);
+
 
     void insert (int index, int data);
     void push_front (int data);

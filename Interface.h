@@ -1,3 +1,6 @@
+//
+// Created by Michał Marszałek on 06/04/2026.
+//
 #ifndef INTERFACE_H
 #define INTERFACE_H
 

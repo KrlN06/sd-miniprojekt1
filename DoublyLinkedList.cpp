@@ -16,6 +16,33 @@ DoublyLinkedList::~DoublyLinkedList() {
     clear();
 }
 
+DoublyLinkedList::DoublyLinkedList(const DoublyLinkedList &other) {
+    head = nullptr;
+    tail = nullptr;
+    size = 0;
+
+    Node* temp = other.head;
+    while (temp != nullptr) {
+        push_back(temp->data);
+        temp = temp->next;
+    }
+}
+
+DoublyLinkedList & DoublyLinkedList::operator=(const DoublyLinkedList &other) {
+    if (this == &other) {
+        return *this;
+    }
+
+    clear();
+    Node* temp = other.head;
+    while (temp != nullptr) {
+        push_back(temp->data);
+        temp = temp->next;
+    }
+
+    return *this;
+}
+
 void DoublyLinkedList::insert(int index, int data) {
     if (index < 0 || index > size) {
         return;
