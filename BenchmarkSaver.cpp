@@ -1,0 +1,37 @@
+//
+// Created by Karol Nalepa on 09/04/2026.
+//
+#include <fstream>
+#include <iostream>
+#include <string>
+
+#include "BenchmarkSaver.h"
+
+void BenchmarkSaver::saveOperationResults(
+    const std::string& filename,
+    int sizes[],
+    double dynamicArray[],
+    double singlyLinkedList[],
+    double doublyLinkedList[],
+    int count
+) {
+    std::ofstream file("results/" + filename);
+
+    if (!file.is_open()) {
+        std::cout << "Cannot open file: results/" << filename << std::endl;
+        return;
+    }
+
+    file << "Size,DynamicArray,SinglyLinkedList,DoublyLinkedList\n";
+
+    for (int i = 0; i < count; i++) {
+        file << sizes[i] << ","
+             << dynamicArray[i] << ","
+             << singlyLinkedList[i] << ","
+             << doublyLinkedList[i] << "\n";
+    }
+
+    file.close();
+
+    std::cout << "Results saved to results/" << filename << std::endl;
+}

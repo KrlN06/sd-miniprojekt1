@@ -345,6 +345,21 @@ void Interface::displayBenchmarkMenu() {
     }
 }
 
+void Interface::handleBenchmarkMenuChoice(int choice) {
+    switch (choice) {
+        case 1:
+            clearScreen();
+            runFullBenchmark();
+            waitForUser();
+            break;
+        case 2:
+            return;
+        default:
+            std::cout << "Invalid choice.\n";
+            waitForUser();
+    }
+}
+
 void Interface::runFullBenchmark() {
     std::cout << "Starting automatic benchmark...\n";
 

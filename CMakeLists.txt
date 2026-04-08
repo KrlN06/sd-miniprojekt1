@@ -17,4 +17,6 @@ add_executable(Projekt_1 main.cpp
         Interface.h
         Random.cpp
         Random.h
+        BenchmarkSaver.cpp
+        BenchmarkSaver.h
 )
