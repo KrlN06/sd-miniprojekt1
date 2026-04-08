@@ -10,9 +10,9 @@
 void BenchmarkSaver::saveOperationResults(
     const std::string& filename,
     int sizes[],
-    double dynamicArray[],
-    double singlyLinkedList[],
-    double doublyLinkedList[],
+    const DynamicArray<long long>& dynamicArray,
+    const DynamicArray<long long>& singlyLinkedList,
+    const DynamicArray<long long>& doublyLinkedList,
     int count
 ) {
     std::ofstream file("results/" + filename);

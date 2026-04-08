@@ -11,6 +11,7 @@
 #include "SinglyLinkedList.h"
 #include "Timer.h"
 #include "Random.h"
+#include "BenchmarkSaver.h"
 
 void Benchmark::run() {
 
@@ -44,7 +45,32 @@ void Benchmark::run() {
         }
         // Display average results for current structure size
         displayResults(size);
-        
+
+        // Store averages for CSV saving
+        dynamicArrayPushFrontAverages.push_back(calculateAverage(dynamicArrayPushFrontResults));
+        dynamicArrayPushBackAverages.push_back(calculateAverage(dynamicArrayPushBackResults));
+        dynamicArrayInsertAverages.push_back(calculateAverage(dynamicArrayInsertResults));
+        dynamicArrayPopFrontAverages.push_back(calculateAverage(dynamicArrayPopFrontResults));
+        dynamicArrayPopBackAverages.push_back(calculateAverage(dynamicArrayPopBackResults));
+        dynamicArrayRemoveAverages.push_back(calculateAverage(dynamicArrayRemoveResults));
+        dynamicArrayFindAverages.push_back(calculateAverage(dynamicArrayFindResults));
+
+        singlyLinkedListPushFrontAverages.push_back(calculateAverage(singlyLinkedListPushFrontResults));
+        singlyLinkedListPushBackAverages.push_back(calculateAverage(singlyLinkedListPushBackResults));
+        singlyLinkedListInsertAverages.push_back(calculateAverage(singlyLinkedListInsertResults));
+        singlyLinkedListPopFrontAverages.push_back(calculateAverage(singlyLinkedListPopFrontResults));
+        singlyLinkedListPopBackAverages.push_back(calculateAverage(singlyLinkedListPopBackResults));
+        singlyLinkedListRemoveAverages.push_back(calculateAverage(singlyLinkedListRemoveResults));
+        singlyLinkedListFindAverages.push_back(calculateAverage(singlyLinkedListFindResults));
+
+        doublyLinkedListPushFrontAverages.push_back(calculateAverage(doublyLinkedListPushFrontResults));
+        doublyLinkedListPushBackAverages.push_back(calculateAverage(doublyLinkedListPushBackResults));
+        doublyLinkedListInsertAverages.push_back(calculateAverage(doublyLinkedListInsertResults));
+        doublyLinkedListPopFrontAverages.push_back(calculateAverage(doublyLinkedListPopFrontResults));
+        doublyLinkedListPopBackAverages.push_back(calculateAverage(doublyLinkedListPopBackResults));
+        doublyLinkedListRemoveAverages.push_back(calculateAverage(doublyLinkedListRemoveResults));
+        doublyLinkedListFindAverages.push_back(calculateAverage(doublyLinkedListFindResults));
+
         // Clear collected results before testing next size
         dynamicArrayPushFrontResults.clear();
         dynamicArrayPushBackResults.clear();
@@ -70,8 +96,70 @@ void Benchmark::run() {
         doublyLinkedListRemoveResults.clear();
         doublyLinkedListFindResults.clear();
 
-
     }
+
+    BenchmarkSaver::saveOperationResults(
+        "push_front.csv",
+        sizes,
+        dynamicArrayPushFrontAverages,
+        singlyLinkedListPushFrontAverages,
+        doublyLinkedListPushFrontAverages,
+        8
+    );
+
+    BenchmarkSaver::saveOperationResults(
+        "push_back.csv",
+        sizes,
+        dynamicArrayPushBackAverages,
+        singlyLinkedListPushBackAverages,
+        doublyLinkedListPushBackAverages,
+        8
+    );
+
+    BenchmarkSaver::saveOperationResults(
+        "insert.csv",
+        sizes,
+        dynamicArrayInsertAverages,
+        singlyLinkedListInsertAverages,
+        doublyLinkedListInsertAverages,
+        8
+    );
+
+    BenchmarkSaver::saveOperationResults(
+        "pop_front.csv",
+        sizes,
+        dynamicArrayPopFrontAverages,
+        singlyLinkedListPopFrontAverages,
+        doublyLinkedListPopFrontAverages,
+        8
+    );
+
+    BenchmarkSaver::saveOperationResults(
+        "pop_back.csv",
+        sizes,
+        dynamicArrayPopBackAverages,
+        singlyLinkedListPopBackAverages,
+        doublyLinkedListPopBackAverages,
+        8
+    );
+
+    BenchmarkSaver::saveOperationResults(
+        "remove.csv",
+        sizes,
+        dynamicArrayRemoveAverages,
+        singlyLinkedListRemoveAverages,
+        doublyLinkedListRemoveAverages,
+        8
+    );
+
+    BenchmarkSaver::saveOperationResults(
+        "find.csv",
+        sizes,
+        dynamicArrayFindAverages,
+        singlyLinkedListFindAverages,
+        doublyLinkedListFindAverages,
+        8
+    );
 }
 
 
