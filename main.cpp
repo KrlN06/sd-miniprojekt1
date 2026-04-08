@@ -1,13 +1,11 @@
-#include <cstdlib>
-#include <ctime>
-
-#include "Benchmark.h"
+#include "Interface.h"
 
 int main() {
-    srand(time(nullptr));
+    
+    Interface app;
 
-    Benchmark benchmark;
-    benchmark.run();
+    
+    app.run();
 
     return 0;
 }

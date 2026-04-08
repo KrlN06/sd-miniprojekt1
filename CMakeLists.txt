@@ -13,4 +13,6 @@ add_executable(Projekt_1 main.cpp
         Timer.h
         Benchmark.cpp
         Benchmark.h
+        Interface.cpp
+        Interface.h
 )
