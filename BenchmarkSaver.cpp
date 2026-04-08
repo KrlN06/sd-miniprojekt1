@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <filesystem>
 
 #include "BenchmarkSaver.h"
 
@@ -15,6 +16,7 @@ void BenchmarkSaver::saveOperationResults(
     const DynamicArray<long long>& doublyLinkedList,
     int count
 ) {
+    std::filesystem::create_directory("results");
     std::ofstream file("results/" + filename);
 
     if (!file.is_open()) {
