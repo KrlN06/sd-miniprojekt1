@@ -86,14 +86,14 @@ void Interface::displayStructureMenu(const std::string& structureName) {
         clearScreen();
         std::cout << "--- " << structureName << " MENU ---\n"
                   << "Select operation category:\n"
-                  << "Add operations [1]\n"
-                  << "Remove operations [2]\n"
-                  << "Find operation [3]\n"
-                  << "Display structure [4]\n"
+                  << "Add operations            [1]\n"
+                  << "Remove operations         [2]\n"
+                  << "Find operation            [3]\n"
+                  << "Display structure         [4]\n"
                   << "Generate random structure [5]\n"
-                  << "Load structure from file [6]\n"
-                  << "Clear structure [7]\n"
-                  << "Return to main menu [8]\n"
+                  << "Load structure from file  [6]\n"
+                  << "Clear structure           [7]\n"
+                  << "Return to main menu       [8]\n"
                   << "Your choice: ";
         std::cin >> choice;
         
@@ -148,10 +148,10 @@ void Interface::handleStructureMenuChoice(int choice, int structureType) {
 void Interface::displayAddMenu() {
     std::cout << "--- ADD OPERATIONS ---\n"
               << "Select add operation:\n"
-              << "Add at beginning [1]\n"
-              << "Add at end [2]\n"
+              << "Add at beginning       [1]\n"
+              << "Add at end             [2]\n"
               << "Add at random position [3]\n"
-              << "Return [4]\n"
+              << "Return                 [4]\n"
               << "Your choice: ";
 }
 
@@ -197,10 +197,10 @@ void Interface::handleAddMenuChoice(int choice, int structureType) {
 void Interface::displayRemoveMenu() {
     std::cout << "--- REMOVE OPERATIONS ---\n"
               << "Select remove operation:\n"
-              << "Remove from beginning [1]\n"
-              << "Remove from end [2]\n"
+              << "Remove from beginning       [1]\n"
+              << "Remove from end             [2]\n"
               << "Remove from random position [3]\n"
-              << "Return [4]\n"
+              << "Return                      [4]\n"
               << "Your choice: ";
 }
 
@@ -323,7 +323,7 @@ void Interface::displayBenchmarkMenu() {
         clearScreen();
         std::cout << "--- BENCHMARK MENU ---\n"
                   << "Select benchmark option:\n"
-                  << "Run full benchmark [1]\n"
+                  << "Run full benchmark  [1]\n"
                   << "Return to main menu [2]\n"
                   << "Your choice: ";
         std::cin >> choice;
