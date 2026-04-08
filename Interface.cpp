@@ -13,9 +13,12 @@ void Interface::clearScreen() {
 #ifdef _WIN32
     system("cls");
 #elif __APPLE__ || __linux__
-    system("clear");
+    for (int i = 0; i < 50; i++) {
+        std::cout << '\n';
+    }
 #endif
 }
+
 void Interface::waitForUser() {
     std::cout << "\nPress ENTER to continue...";
     std::cin.ignore(10000, '\n');
@@ -340,9 +343,9 @@ void Interface::displayBenchmarkMenu() {
 
 void Interface::runFullBenchmark() {
     std::cout << "Starting automatic benchmark...\n";
-    
+
     Benchmark benchmark;
     benchmark.run();
-    
+
     std::cout << "\nBenchmark finished!\n";
 }
