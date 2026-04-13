@@ -104,7 +104,7 @@ void Benchmark::run() {
         dynamicArrayPushFrontAverages,
         singlyLinkedListPushFrontAverages,
         doublyLinkedListPushFrontAverages,
-        8
+        SIZE
     );
 
     BenchmarkSaver::saveOperationResults(
@@ -113,7 +113,7 @@ void Benchmark::run() {
         dynamicArrayPushBackAverages,
         singlyLinkedListPushBackAverages,
         doublyLinkedListPushBackAverages,
-        8
+        SIZE
     );
 
     BenchmarkSaver::saveOperationResults(
@@ -122,7 +122,7 @@ void Benchmark::run() {
         dynamicArrayInsertAverages,
         singlyLinkedListInsertAverages,
         doublyLinkedListInsertAverages,
-        8
+        SIZE
     );
 
     BenchmarkSaver::saveOperationResults(
@@ -131,7 +131,7 @@ void Benchmark::run() {
         dynamicArrayPopFrontAverages,
         singlyLinkedListPopFrontAverages,
         doublyLinkedListPopFrontAverages,
-        8
+        SIZE
     );
 
     BenchmarkSaver::saveOperationResults(
@@ -140,7 +140,7 @@ void Benchmark::run() {
         dynamicArrayPopBackAverages,
         singlyLinkedListPopBackAverages,
         doublyLinkedListPopBackAverages,
-        8
+        SIZE
     );
 
     BenchmarkSaver::saveOperationResults(
@@ -149,7 +149,7 @@ void Benchmark::run() {
         dynamicArrayRemoveAverages,
         singlyLinkedListRemoveAverages,
         doublyLinkedListRemoveAverages,
-        8
+        SIZE
     );
 
     BenchmarkSaver::saveOperationResults(
@@ -158,7 +158,7 @@ void Benchmark::run() {
         dynamicArrayFindAverages,
         singlyLinkedListFindAverages,
         doublyLinkedListFindAverages,
-        8
+        SIZE
     );
 }
 
