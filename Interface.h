@@ -16,9 +16,11 @@ public:
     void run();
 
 private:
+    // The menu works on one live instance of each structure.
     DynamicArray<int> dynArray; 
     SinglyLinkedList sList;
     DoublyLinkedList dList;
+    // Used to print the banner only once.
     bool firstRun;
 
     void displayMainMenu();

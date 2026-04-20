@@ -17,6 +17,7 @@ void Timer::stop() {
 }
 
 long long Timer::getElapsedTime() const {
+    // Benchmarks are reported in nanoseconds.
     return std::chrono::duration_cast<std::chrono::nanoseconds>(
         endTime - startTime
     ).count();

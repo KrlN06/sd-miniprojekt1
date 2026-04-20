@@ -9,13 +9,11 @@
 
 class Random {
 
-
-
 public:
     static int generateRandomInt(int min, int max);
 
 private:
-
+    // Keep one shared engine instead of reseeding on every call.
     static std::random_device rd;
     static std::mt19937 gen;
 

@@ -16,6 +16,7 @@ void BenchmarkSaver::saveOperationResults(
     const DynamicArray<long long>& doublyLinkedList,
     int count
 ) {
+    // Keep benchmark exports in a dedicated folder.
     std::filesystem::create_directory("results");
     std::ofstream file("results/" + filename);
 

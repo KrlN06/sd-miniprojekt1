@@ -11,6 +11,7 @@
 #include <limits>
 
 Interface::Interface() : firstRun(true) {
+    // Initialize the random number generator once at startup.
     srand(static_cast<unsigned int>(time(nullptr)));
 }
 
@@ -18,6 +19,7 @@ void Interface::clearScreen() {
 #ifdef _WIN32
     system("cls");
 #elif __APPLE__ || __linux__
+    // Fallback to a simple visual reset on Unix-like systems.
     for (int i = 0; i < 50; i++) {
         std::cout << '\n';
     }
@@ -33,9 +35,11 @@ void Interface::waitForUser() {
 
 void Interface::run() {
     int choice = 0;
+    // Keep showing the main menu until the user exits the program.
     while (true) {
         clearScreen();
         displayMainMenu();
+        // Validate that the input is a number.
         if (!(std::cin >> choice)) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -91,6 +95,7 @@ void Interface::displayStructureMenu(const std::string& structureName) {
     int choice = 0;
     int structureType = 0;
 
+    // Map the selected structure name to its internal identifier.
     if (structureName == "DYNAMIC ARRAY") structureType = 1;
     else if (structureName == "SINGLY LINKED LIST") structureType = 2;
     else if (structureName == "DOUBLY LINKED LIST") structureType = 3;
@@ -108,6 +113,7 @@ void Interface::displayStructureMenu(const std::string& structureName) {
                   << "Clear structure           [7]\n"
                   << "Return to main menu       [8]\n"
                   << "Your choice: ";
+        // Validate that the input is a number.
         if (!(std::cin >> choice)) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -195,11 +201,13 @@ void Interface::handleAddMenuChoice(int choice, int structureType) {
             std::cout << "Element successfully added at the end.\n";
             break;
         case 3: {
+            // Get the current size to generate a valid random position.
             int currentSize = 0;
             if (structureType == 1) currentSize = dynArray.getSize();
             else if (structureType == 2) currentSize = sList.getSize();
             else if (structureType == 3) currentSize = dList.getSize();
 
+            // Random insertion may also target the end of the structure.
             int index = (currentSize == 0) ? 0 : (rand() % (currentSize + 1));
 
             if (structureType == 1) dynArray.insert(index, value);
@@ -226,6 +234,7 @@ void Interface::displayRemoveMenu() {
 void Interface::handleRemoveMenuChoice(int choice, int structureType) {
     if (choice == 4) return;
 
+    // Execute the selected remove operation.
     switch (choice) {
         case 1:
             if (structureType == 1) dynArray.pop_front();
@@ -245,6 +254,7 @@ void Interface::handleRemoveMenuChoice(int choice, int structureType) {
             else if (structureType == 2) currentSize = sList.getSize();
             else if (structureType == 3) currentSize = dList.getSize();
 
+            // Prevent removing from an empty structure.
             if (currentSize == 0) {
                 std::cout << "Structure is empty. Cannot remove element.\n";
             } else {
@@ -271,6 +281,7 @@ void Interface::handleFindOperation(int structureType) {
     else if (structureType == 2) index = sList.find(value);
     else if (structureType == 3) index = dList.find(value);
 
+    // Display whether the searched value was found.
     if (index != -1) {
         std::cout << "Element found at position: " << index << "\n";
     } else {
@@ -292,6 +303,7 @@ void Interface::handleGenerateRandomOperation(int structureType) {
     std::cout << "Enter the number of elements to generate: ";
     std::cin >> count;
 
+    // Clear previous contents before generating new random values.
     handleClearOperation(structureType);
 
     for (int i = 0; i < count; i++) {
@@ -315,10 +327,12 @@ void Interface::handleLoadFromFileOperation(int structureType) {
         return;
     }
 
+    // Replace the current contents with the values loaded from disk.
     handleClearOperation(structureType);
 
     int val;
     int count = 0;
+    // Read values one by one and append them to the selected structure.
     while (file >> val) {
         if (structureType == 1) dynArray.push_back(val);
         else if (structureType == 2) sList.push_back(val);
@@ -384,6 +398,7 @@ void Interface::handleBenchmarkMenuChoice(int choice) {
 void Interface::runFullBenchmark() {
     std::cout << "Starting automatic benchmark...\n";
 
+    // Create a benchmark object and start all measurements.
     Benchmark benchmark;
     benchmark.run();
 

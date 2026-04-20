@@ -8,6 +8,7 @@
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
 
+// Stores raw timings and per-size averages for the full benchmark suite.
 class Benchmark {
 public:
     // Runs all benchmarks for all structures
@@ -15,6 +16,7 @@ public:
     const static int SIZE = 50;
 
 private:
+    // The same size schedule is reused for every measured operation.
     int sizes[SIZE] = {
         5000, 8000, 10000, 12000, 14000,
         16000, 18000, 20000, 24000, 28000,

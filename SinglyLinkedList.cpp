@@ -12,6 +12,7 @@ SinglyLinkedList::SinglyLinkedList() {
 }
 
 SinglyLinkedList::~SinglyLinkedList() {
+    // Release all dynamically allocated nodes.
     clear();
 }
 
@@ -20,6 +21,7 @@ SinglyLinkedList::SinglyLinkedList(const SinglyLinkedList& other) {
     tail = nullptr;
     size = 0;
 
+    // Copy nodes one by one to preserve the original order.
     Node* temp = other.head;
 
     while (temp != nullptr) {
@@ -33,6 +35,7 @@ SinglyLinkedList& SinglyLinkedList::operator=(const SinglyLinkedList& other) {
         return *this;
     }
 
+    // Remove current contents before copying new data.
     clear();
 
     Node* temp = other.head;
@@ -62,10 +65,12 @@ void SinglyLinkedList::insert(int index, int data) {
     }
 
     Node* temp = head;
+    // Stop on the element right before the insertion point.
     for (int i = 0; i < index - 1; i++) {
         temp = temp->next;
     }
 
+    // Create a new node and insert it into the list.
     Node* newNode = new Node;
     newNode->data = data;
     newNode->next = temp->next;
@@ -74,6 +79,7 @@ void SinglyLinkedList::insert(int index, int data) {
     size++;
 }
 void SinglyLinkedList::push_front(int data) {
+    // Create a new node and move it to the beginning of the list.
     Node* newNode = new Node;
     newNode -> data = data;
     newNode -> next = head;
@@ -84,8 +90,9 @@ void SinglyLinkedList::push_front(int data) {
 
     size++;
 }
-    
+
 void SinglyLinkedList::push_back(int data) {
+    // Create a new node and attach it after the current tail.
     Node* newNode = new Node;
     newNode->data = data;
     newNode->next = nullptr;
@@ -107,6 +114,7 @@ void SinglyLinkedList::remove(int index) {
     }
     Node* temp = head;
 
+    // Handle removing the first element separately.
     if (index == 0) {
         head = head->next;
         delete temp;
@@ -121,6 +129,7 @@ void SinglyLinkedList::remove(int index) {
         temp = temp->next;
     }
 
+    // Bypass the target node before releasing its memory.
     Node* to_delete = temp->next;
     temp->next = to_delete->next;
 
@@ -133,14 +142,17 @@ void SinglyLinkedList::remove(int index) {
 }
 
 void SinglyLinkedList::pop_front() {
+    // Reuse remove() for the first element.
     remove(0);
 }
 
 void SinglyLinkedList::pop_back() {
+    // Reuse remove() for the last element.
     remove(size-1);
 }
 
 void SinglyLinkedList::print() const{
+    // Traverse the list and display each stored value.
     Node* temp = head;
 
     while (temp != nullptr) {
@@ -152,6 +164,7 @@ void SinglyLinkedList::print() const{
 }
 
 void SinglyLinkedList::clear() {
+    // Delete every node one by one until the list becomes empty.
     Node* temp = head;
 
     while (temp != nullptr) {
@@ -170,6 +183,7 @@ int SinglyLinkedList::getSize() const{
 }
 
 int SinglyLinkedList::find(int data) const{
+    // Traverse the list until the requested value is found.
     Node* temp = head;
     int index = 0;
     while (temp != nullptr) {
@@ -181,4 +195,3 @@ int SinglyLinkedList::find(int data) const{
     }
     return -1;
 }
-

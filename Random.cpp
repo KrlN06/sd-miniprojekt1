@@ -4,6 +4,7 @@
 
 #include "Random.h"
 
+// Seed the generator once and reuse it across the whole program.
 std::random_device Random::rd;
 std::mt19937 Random::gen(Random::rd());
 

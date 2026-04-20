@@ -8,7 +8,7 @@
 #include <string>
 #include "DynamicArray.h"
 
-
+// Writes aggregated benchmark results to CSV files.
 class BenchmarkSaver {
 public:
     static void saveOperationResults(

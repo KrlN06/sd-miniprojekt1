@@ -22,7 +22,7 @@ int main() {
     
     Interface app;
 
-    
+    // Hand control to the interactive menu loop.
     app.run();
 
     return 0;

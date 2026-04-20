@@ -13,6 +13,7 @@ DoublyLinkedList::DoublyLinkedList() {
 }
 
 DoublyLinkedList::~DoublyLinkedList() {
+    // Release all dynamically allocated nodes.
     clear();
 }
 
@@ -21,6 +22,7 @@ DoublyLinkedList::DoublyLinkedList(const DoublyLinkedList &other) {
     tail = nullptr;
     size = 0;
 
+    // Rebuild the list node by node to preserve element order.
     Node* temp = other.head;
     while (temp != nullptr) {
         push_back(temp->data);
@@ -33,6 +35,7 @@ DoublyLinkedList & DoublyLinkedList::operator=(const DoublyLinkedList &other) {
         return *this;
     }
 
+    // Remove current contents before copying new data.
     clear();
     Node* temp = other.head;
     while (temp != nullptr) {
@@ -60,6 +63,7 @@ void DoublyLinkedList::insert(int index, int data) {
 
     Node* temp;
 
+    // Walk from the closer end to reduce pointer hops.
     if (index <= size / 2) {
         temp = head;
 
@@ -71,9 +75,10 @@ void DoublyLinkedList::insert(int index, int data) {
 
         for (int i = size - 1; i > index - 1; i--) {
             temp = temp->prev;
-        }x
+        }
     }
 
+    // Create and connect a new node between two existing nodes.
     Node* newNode = new Node();
     newNode->data = data;
     newNode->next = temp->next;
@@ -86,6 +91,7 @@ void DoublyLinkedList::insert(int index, int data) {
 }
 
 void DoublyLinkedList::push_front(int data) {
+    // Create a new node and move it to the beginning of the list.
     Node* temp = head;
 
     head = new Node();
@@ -103,6 +109,7 @@ void DoublyLinkedList::push_front(int data) {
 }
 
 void DoublyLinkedList::push_back(int data) {
+    // Create a new node and attach it after the current tail.
     Node* temp = new Node();
     temp->data = data;
     temp->next = nullptr;
@@ -135,6 +142,7 @@ void DoublyLinkedList::remove(int index) {
 
     Node* temp;
 
+    // Walk from the closer end to remove the target node faster.
     if (index <= size / 2) {
         temp = head;
 
@@ -149,6 +157,7 @@ void DoublyLinkedList::remove(int index) {
         }
     }
 
+    // Bypass the node being removed by reconnecting neighbors.
     temp->prev->next = temp->next;
     temp->next->prev = temp->prev;
 
@@ -157,6 +166,7 @@ void DoublyLinkedList::remove(int index) {
 }
 
 void DoublyLinkedList::pop_front() {
+    // Remove the first node and move head to the next element.
     Node* temp = head;
     head = head->next;
 
@@ -172,6 +182,7 @@ void DoublyLinkedList::pop_front() {
 
 
 void DoublyLinkedList::pop_back() {
+    // Remove the last node and move tail to the previous element.
     Node* temp = tail;
     tail = tail->prev;
     if (tail == nullptr) {
@@ -188,6 +199,7 @@ void DoublyLinkedList::pop_back() {
 }
 
 void DoublyLinkedList::clear() {
+    // Delete every node one by one until the list becomes empty.
     Node* temp = head;
     while (temp != nullptr) {
         Node* next = temp->next;
@@ -214,6 +226,7 @@ int DoublyLinkedList::getSize() const{
 
 
 int DoublyLinkedList::find(int data) const {
+    // Traverse the list until the requested value is found.
     Node* temp = head;
     int index = 0;
     while (temp != nullptr) {
@@ -225,5 +238,4 @@ int DoublyLinkedList::find(int data) const {
     }
     return -1;
 }
-
 
