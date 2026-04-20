@@ -71,7 +71,7 @@ void DoublyLinkedList::insert(int index, int data) {
 
         for (int i = size - 1; i > index - 1; i--) {
             temp = temp->prev;
-        }
+        }x
     }
 
     Node* newNode = new Node();

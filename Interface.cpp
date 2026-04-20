@@ -8,6 +8,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <ctime>
+#include <limits>
 
 Interface::Interface() : firstRun(true) {
     srand(static_cast<unsigned int>(time(nullptr)));
@@ -25,7 +26,8 @@ void Interface::clearScreen() {
 
 void Interface::waitForUser() {
     std::cout << "\nPress ENTER to continue...";
-    std::cin.ignore(10000, '\n');
+    std::cin.clear();
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     std::cin.get();
 }
 
@@ -34,7 +36,14 @@ void Interface::run() {
     while (true) {
         clearScreen();
         displayMainMenu();
-        std::cin >> choice;
+        if (!(std::cin >> choice)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter a number.\n";
+            waitForUser();
+            continue;
+        }
+
         handleMainMenuChoice(choice);
     }
 }
@@ -81,7 +90,7 @@ void Interface::handleMainMenuChoice(int choice) {
 void Interface::displayStructureMenu(const std::string& structureName) {
     int choice = 0;
     int structureType = 0;
-    
+
     if (structureName == "DYNAMIC ARRAY") structureType = 1;
     else if (structureName == "SINGLY LINKED LIST") structureType = 2;
     else if (structureName == "DOUBLY LINKED LIST") structureType = 3;
@@ -99,8 +108,14 @@ void Interface::displayStructureMenu(const std::string& structureName) {
                   << "Clear structure           [7]\n"
                   << "Return to main menu       [8]\n"
                   << "Your choice: ";
-        std::cin >> choice;
-        
+        if (!(std::cin >> choice)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter a number.\n";
+            waitForUser();
+            continue;
+        }
+
         if (choice == 8) break;
         handleStructureMenuChoice(choice, structureType);
     }
@@ -277,7 +292,7 @@ void Interface::handleGenerateRandomOperation(int structureType) {
     std::cout << "Enter the number of elements to generate: ";
     std::cin >> count;
 
-    handleClearOperation(structureType); 
+    handleClearOperation(structureType);
 
     for (int i = 0; i < count; i++) {
         int randomVal = rand() % 10000;
@@ -330,7 +345,13 @@ void Interface::displayBenchmarkMenu() {
                   << "Run full benchmark  [1]\n"
                   << "Return to main menu [2]\n"
                   << "Your choice: ";
-        std::cin >> choice;
+        if (!(std::cin >> choice)) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input. Please enter a number.\n";
+            waitForUser();
+            continue;
+        }
 
         if (choice == 1) {
             clearScreen();

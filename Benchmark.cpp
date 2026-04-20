@@ -13,6 +13,7 @@
 #include "Random.h"
 #include "BenchmarkSaver.h"
 
+
 void Benchmark::run() {
 
     // Test all configured structure sizes
