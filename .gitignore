@@ -3,9 +3,13 @@
 
 # build directory
 cmake-build-*/
+build/
 
 # compiled files
 *.exe
 *.out
 *.o
 *.obj
+
+# macOS metadata created on external volumes
+._*
