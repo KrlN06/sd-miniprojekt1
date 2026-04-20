@@ -171,70 +171,113 @@ void Benchmark::run() {
 
 void Benchmark::benchmarkDynamicArray(const DynamicArray<int>& originalArray, const DynamicArray<int>& data) {
     Timer timer;
+    const int repetitions = 100;
     // Each operation is performed on a copy of the original structure
     // to ensure identical starting conditions for every measurement
 
     // Push front benchmark----------------------------------------------
-    DynamicArray<int> pushFrontArray = originalArray;
-    int pushFrontValue = Random::generateRandomInt(0, 99999);
-    timer.start();
-    pushFrontArray.push_front(pushFrontValue);
-    timer.stop();
-    dynamicArrayPushFrontResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> pushFrontArray = originalArray;
+            int pushFrontValue = Random::generateRandomInt(0, 99999);
+            timer.start();
+            pushFrontArray.push_front(pushFrontValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayPushFrontResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Push back benchmark-----------------------------------------------
-    DynamicArray<int> pushBackArray = originalArray;
-    int pushBackValue = Random::generateRandomInt(0, 99999);
-    timer.start();
-    pushBackArray.push_back(pushBackValue);
-    timer.stop();
-    dynamicArrayPushBackResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> pushBackArray = originalArray;
+            int pushBackValue = Random::generateRandomInt(0, 99999);
+            timer.start();
+            pushBackArray.push_back(pushBackValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayPushBackResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Insert benchmark--------------------------------------------------
-    DynamicArray<int> insertArray = originalArray;
-    int insertValue = Random::generateRandomInt(0, 99999);
-    int insertIndex = insertArray.getSize() / 2;
-    timer.start();
-    insertArray.insert(insertIndex, insertValue);
-    timer.stop();
-    dynamicArrayInsertResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> insertArray = originalArray;
+            int insertValue = Random::generateRandomInt(0, 99999);
+            int insertIndex = insertArray.getSize() / 2;
+            timer.start();
+            insertArray.insert(insertIndex, insertValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayInsertResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Pop front benchmark-----------------------------------------------
-    DynamicArray<int> popFrontArray = originalArray;
-    timer.start();
-    popFrontArray.pop_front();
-    timer.stop();
-    dynamicArrayPopFrontResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> popFrontArray = originalArray;
+            timer.start();
+            popFrontArray.pop_front();
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayPopFrontResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Pop back benchmark------------------------------------------------
-    DynamicArray<int> popBackArray = originalArray;
-    timer.start();
-    popBackArray.pop_back();
-    timer.stop();
-    dynamicArrayPopBackResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> popBackArray = originalArray;
+            timer.start();
+            popBackArray.pop_back();
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayPopBackResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Remove benchmark--------------------------------------------------
-    DynamicArray<int> removeArray = originalArray;
-    int removeIndex = removeArray.getSize() / 2;
-    timer.start();
-    removeArray.remove(removeIndex);
-    timer.stop();
-    dynamicArrayRemoveResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> removeArray = originalArray;
+            int removeIndex = Random::generateRandomInt(0, originalArray.getSize() - 1);
+            timer.start();
+            removeArray.remove(removeIndex);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayRemoveResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Find benchmark----------------------------------------------------
-    DynamicArray<int> findArray = originalArray;
-    int findIndex = Random::generateRandomInt(0, data.getSize() - 1);
-    int valueToFind = data[findIndex];
-    timer.start();
-    int foundIndex = findArray.find(valueToFind);
-    timer.stop();
-    dynamicArrayFindResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DynamicArray<int> findArray = originalArray;
+            int findIndex = Random::generateRandomInt(0, data.getSize() - 1);
+            int valueToFind = data[findIndex];
+            timer.start();
+            int foundIndex = findArray.find(valueToFind);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        dynamicArrayFindResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 }
 
@@ -244,70 +287,113 @@ void Benchmark::benchmarkDynamicArray(const DynamicArray<int>& originalArray, co
 
 void Benchmark::benchmarkSinglyLinkedList(const SinglyLinkedList &originalList, const DynamicArray<int> &data) {
     Timer timer;
+    const int repetitions = 100;
     // Each operation is performed on a copy of the original structure
     // to ensure identical starting conditions for every measurement
 
     // Push front benchmark----------------------------------------------
-    SinglyLinkedList pushFrontSinglyLinkedList = originalList;
-    int pushFrontValue = Random::generateRandomInt(0, 99999);
-    timer.start();
-    pushFrontSinglyLinkedList.push_front(pushFrontValue);
-    timer.stop();
-    singlyLinkedListPushFrontResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList pushFrontSinglyLinkedList = originalList;
+            int pushFrontValue = Random::generateRandomInt(0, 99999);
+            timer.start();
+            pushFrontSinglyLinkedList.push_front(pushFrontValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListPushFrontResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Push back benchmark-----------------------------------------------
-    SinglyLinkedList pushBackSinglyLinkedList = originalList;
-    int pushBackValue = Random::generateRandomInt(0, 99999);
-    timer.start();
-    pushBackSinglyLinkedList.push_back(pushBackValue);
-    timer.stop();
-    singlyLinkedListPushBackResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList pushBackSinglyLinkedList = originalList;
+            int pushBackValue = Random::generateRandomInt(0, 99999);
+            timer.start();
+            pushBackSinglyLinkedList.push_back(pushBackValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListPushBackResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Insert benchmark--------------------------------------------------
-    SinglyLinkedList insertSinglyLinkedList = originalList;
-    int insertValue = Random::generateRandomInt(0, 99999);
-    int insertIndex = insertSinglyLinkedList.getSize() / 2;
-    timer.start();
-    insertSinglyLinkedList.insert(insertIndex, insertValue);
-    timer.stop();
-    singlyLinkedListInsertResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList insertSinglyLinkedList = originalList;
+            int insertValue = Random::generateRandomInt(0, 99999);
+            int insertIndex = insertSinglyLinkedList.getSize() / 2;
+            timer.start();
+            insertSinglyLinkedList.insert(insertIndex, insertValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListInsertResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Pop front benchmark-----------------------------------------------
-    SinglyLinkedList popFrontSinglyLinkedList = originalList;
-    timer.start();
-    popFrontSinglyLinkedList.pop_front();
-    timer.stop();
-    singlyLinkedListPopFrontResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList popFrontSinglyLinkedList = originalList;
+            timer.start();
+            popFrontSinglyLinkedList.pop_front();
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListPopFrontResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Pop back benchmark-----------------------------------------------
-    SinglyLinkedList popBackSinglyLinkedList = originalList;
-    timer.start();
-    popBackSinglyLinkedList.pop_back();
-    timer.stop();
-    singlyLinkedListPopBackResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList popBackSinglyLinkedList = originalList;
+            timer.start();
+            popBackSinglyLinkedList.pop_back();
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListPopBackResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Remove benchmark--------------------------------------------------
-    SinglyLinkedList removeSinglyLinkedList = originalList;
-    int removeIndex = removeSinglyLinkedList.getSize() / 2;
-    timer.start();
-    removeSinglyLinkedList.remove(removeIndex);
-    timer.stop();
-    singlyLinkedListRemoveResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList removeSinglyLinkedList = originalList;
+            int removeIndex = Random::generateRandomInt(0, removeSinglyLinkedList.getSize() - 1);
+            timer.start();
+            removeSinglyLinkedList.remove(removeIndex);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListRemoveResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Find benchmark----------------------------------------------------
-    SinglyLinkedList findSinglyLinkedList = originalList;
-    int findIndex = Random::generateRandomInt(0, data.getSize() - 1);
-    int valueToFind = data[findIndex];
-    timer.start();
-    int foundIndex = findSinglyLinkedList.find(valueToFind);
-    timer.stop();
-    singlyLinkedListFindResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            SinglyLinkedList findSinglyLinkedList = originalList;
+            int findIndex = Random::generateRandomInt(0, data.getSize() - 1);
+            int valueToFind = data[findIndex];
+            timer.start();
+            int foundIndex = findSinglyLinkedList.find(valueToFind);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        singlyLinkedListFindResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 }
 
@@ -318,73 +404,114 @@ void Benchmark::benchmarkSinglyLinkedList(const SinglyLinkedList &originalList, 
 
 void Benchmark::benchmarkDoublyLinkedList(const DoublyLinkedList &originalList, const DynamicArray<int> &data) {
     Timer timer;
+    const int repetitions = 100;
     // Each operation is performed on a copy of the original structure
     // to ensure identical starting conditions for every measurement
 
     // Push front benchmark----------------------------------------------
-    DoublyLinkedList pushFrontDoublyLinkedList = originalList;
-    int pushFrontValue = Random::generateRandomInt(0, 99999);
-    timer.start();
-    pushFrontDoublyLinkedList.push_front(pushFrontValue);
-    timer.stop();
-    doublyLinkedListPushFrontResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList pushFrontDoublyLinkedList = originalList;
+            int pushFrontValue = Random::generateRandomInt(0, 99999);
+            timer.start();
+            pushFrontDoublyLinkedList.push_front(pushFrontValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListPushFrontResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Push back benchmark-----------------------------------------------
-    DoublyLinkedList pushBackDoublyLinkedList = originalList;
-    int pushBackValue = Random::generateRandomInt(0, 99999);
-    timer.start();
-    pushBackDoublyLinkedList.push_back(pushBackValue);
-    timer.stop();
-    doublyLinkedListPushBackResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList pushBackDoublyLinkedList = originalList;
+            int pushBackValue = Random::generateRandomInt(0, 99999);
+            timer.start();
+            pushBackDoublyLinkedList.push_back(pushBackValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListPushBackResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Insert benchmark--------------------------------------------------
-    DoublyLinkedList insertDoublyLinkedList = originalList;
-    int insertValue = Random::generateRandomInt(0, 99999);
-    int insertIndex = insertDoublyLinkedList.getSize() / 2;
-    timer.start();
-    insertDoublyLinkedList.insert(insertIndex, insertValue);
-    timer.stop();
-    doublyLinkedListInsertResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList insertDoublyLinkedList = originalList;
+            int insertValue = Random::generateRandomInt(0, 99999);
+            int insertIndex = insertDoublyLinkedList.getSize() / 2;
+            timer.start();
+            insertDoublyLinkedList.insert(insertIndex, insertValue);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListInsertResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Pop front benchmark-----------------------------------------------
-    DoublyLinkedList popFrontDoublyLinkedList = originalList;
-    timer.start();
-    popFrontDoublyLinkedList.pop_front();
-    timer.stop();
-    doublyLinkedListPopFrontResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList popFrontDoublyLinkedList = originalList;
+            timer.start();
+            popFrontDoublyLinkedList.pop_front();
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListPopFrontResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Pop back benchmark------------------------------------------------
-    DoublyLinkedList popBackDoublyLinkedList = originalList;
-    timer.start();
-    popBackDoublyLinkedList.pop_back();
-    timer.stop();
-    doublyLinkedListPopBackResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList popBackDoublyLinkedList = originalList;
+            timer.start();
+            popBackDoublyLinkedList.pop_back();
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListPopBackResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Remove benchmark--------------------------------------------------
-    DoublyLinkedList removeDoublyLinkedList = originalList;
-    int removeIndex = removeDoublyLinkedList.getSize() / 2;
-    timer.start();
-    removeDoublyLinkedList.remove(removeIndex);
-    timer.stop();
-    doublyLinkedListRemoveResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList removeDoublyLinkedList = originalList;
+            int removeIndex = Random::generateRandomInt(0, removeDoublyLinkedList.getSize() - 1);
+            timer.start();
+            removeDoublyLinkedList.remove(removeIndex);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListRemoveResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
 
     // Find benchmark----------------------------------------------------
-    DoublyLinkedList findDoublyLinkedList = originalList;
-    int findIndex = Random::generateRandomInt(0, data.getSize() - 1);
-    int valueToFind = data[findIndex];
-    timer.start();
-    int foundIndex = findDoublyLinkedList.find(valueToFind);
-    timer.stop();
-    doublyLinkedListFindResults.push_back(timer.getElapsedTime());
+    {
+        long long totalTime = 0;
+        for (int i = 0; i < repetitions; i++) {
+            DoublyLinkedList findDoublyLinkedList = originalList;
+            int findIndex = Random::generateRandomInt(0, data.getSize() - 1);
+            int valueToFind = data[findIndex];
+            timer.start();
+            int foundIndex = findDoublyLinkedList.find(valueToFind);
+            timer.stop();
+            totalTime += timer.getElapsedTime();
+        }
+        doublyLinkedListFindResults.push_back(totalTime / repetitions);
+    }
     //------------------------------------------------------------------
-
-
 
 }
 
